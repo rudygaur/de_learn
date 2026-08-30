@@ -1,0 +1,54 @@
+# Boilerplate toolkit for kicking off any new Python project.
+# See README.md for setup. Install with:
+#   uv pip install -r requirements.txt      (fast)
+#   pip install -r requirements.txt         (stdlib venv)
+#
+# Unpinned on purpose: this is a starting point for new projects and POCs,
+# so a fresh install should pull current versions. Pin them in the real
+# project once it settles.
+
+# --- Environment & code quality -------------------------------------------
+uv                # fast package/venv manager, drop-in alternative to pip
+ruff              # linter + formatter (replaces flake8/black/isort)
+mypy              # static type checker
+pre-commit        # run ruff/mypy automatically on git commit
+
+# --- Testing ---------------------------------------------------------------
+pytest            # test runner
+pytest-cov        # coverage reporting
+
+# --- Notebooks -------------------------------------------------------------
+jupyterlab        # run/edit .ipynb notebooks
+ipykernel         # register this venv as a selectable Jupyter kernel
+
+# --- Data ------------------------------------------------------------------
+numpy             # arrays and numerics, the base of the stack
+pandas            # dataframes, CSV/Excel/SQL I/O
+polars            # faster dataframes, good for larger-than-memory work
+pyarrow           # Parquet/Arrow I/O, pandas <-> polars interchange
+
+# --- Visualisation ---------------------------------------------------------
+matplotlib        # baseline plotting
+seaborn           # statistical charts on top of matplotlib
+plotly            # interactive charts, renders inline in notebooks
+
+# --- HTTP & scraping -------------------------------------------------------
+requests          # simple synchronous HTTP
+httpx             # async-capable HTTP with the same feel as requests
+beautifulsoup4    # HTML parsing
+
+# --- Config & validation ---------------------------------------------------
+pydantic          # typed data models and validation
+pydantic-settings # load settings from env vars / .env into a model
+python-dotenv     # read .env files
+
+# --- CLI & output ----------------------------------------------------------
+typer             # build CLIs from type hints
+rich              # colour, tables and tracebacks in the terminal
+tqdm              # progress bars
+
+# --- Storage & PostgreSQL --------------------------------------------------
+sqlalchemy        # SQL toolkit and ORM, speaks to Postgres via psycopg
+psycopg[binary]   # PostgreSQL driver (psycopg 3); [binary] ships a prebuilt
+                  # libpq, so no local Postgres install needed to build it
+alembic           # schema migrations, driven off SQLAlchemy models
