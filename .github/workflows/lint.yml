@@ -1,0 +1,26 @@
+# Runs the same ruff and mypy checks as the pre-commit hook, on every push
+# and pull request. Delete this file if you don't want CI on a POC repo.
+name: lint
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+
+      # Just the two tools — installing requirements.txt would pull the whole
+      # data stack down for a lint run. Unpinned, like requirements.txt.
+      - run: pip install ruff mypy
+
+      - run: ruff check --output-format=github .
+      - run: ruff format --check .
+      - run: mypy

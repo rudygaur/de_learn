@@ -1,0 +1,37 @@
+{
+  // Everything below runs out of this repo's venv, not a global Python.
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+
+  // --- Type checking, as you type (Pylance) ------------------------------
+  // "standard" is a good default; "strict" if you want it to nag harder.
+  "python.analysis.typeCheckingMode": "standard",
+  // Check the whole workspace, not just open files.
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.inlayHints.functionReturnTypes": true,
+
+  // --- Linting, as you type (Ruff) ---------------------------------------
+  // Use the ruff from the venv so the editor and pre-commit agree.
+  "ruff.importStrategy": "fromEnvironment",
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.ruff": "explicit",
+      "source.organizeImports.ruff": "explicit"
+    }
+  },
+
+  // --- Type checking, on save (mypy) -------------------------------------
+  // Pylance is the live pass; mypy is the authoritative one. The daemon
+  // (dmypy) keeps re-checks fast enough to run on every save.
+  "mypy-type-checker.importStrategy": "fromEnvironment",
+  "mypy-type-checker.preferDaemon": true,
+  "mypy-type-checker.reportingScope": "workspace",
+
+  // --- Notebooks get the same lint/format treatment ----------------------
+  "notebook.formatOnSave.enabled": true,
+  "notebook.codeActionsOnSave": {
+    "notebook.source.fixAll": "explicit",
+    "notebook.source.organizeImports": "explicit"
+  }
+}

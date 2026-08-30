@@ -15,3 +15,27 @@ de-learn = "de_learn:main"
 [build-system]
 requires = ["uv_build>=0.12.7,<0.13.0"]
 build-backend = "uv_build"
+[tool.ruff]
+src = ["src"]
+line-length = 88
+
+[tool.ruff.format]
+# Ruff also formats fenced python blocks inside Markdown. README examples are
+# written to be read, not to satisfy a formatter — leave them alone.
+exclude = ["*.md"]
+
+[tool.ruff.lint]
+# pycodestyle, pyflakes, isort, pyupgrade, bugbear, simplify.
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.13"
+files = ["src"]
+warn_unused_configs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+# Check bodies of unannotated functions too — POC code rarely has hints.
+check_untyped_defs = true
+# Most of the data stack (seaborn, plotly, ...) ships no stubs.
+ignore_missing_imports = true
